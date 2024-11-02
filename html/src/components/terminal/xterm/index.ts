@@ -158,6 +158,9 @@ export class Xterm {
         terminal.loadAddon(fitAddon);
         terminal.loadAddon(overlayAddon);
         terminal.loadAddon(new WebLinksAddon());
+        terminal.parser.registerCsiHandler({final: 'D'}, params => {
+            terminal.write("\x9B1D")
+        });
 
         terminal.open(parent);
         fitAddon.fit();
